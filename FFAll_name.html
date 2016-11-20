@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div name="odiv" id="odiv" style="border: 1px solid blue">909</div>
+	<script>
+		//var txt = document.all("odiv")[0];
+		var txt1 = document.getElementsByName("odiv")[0],
+		txt = document.getElementById('odiv');
+		
+		txt.style.color = "red";
+		txt.style.borderLeftColor = "red";
+		//alert(txt);
+			//alert(txt1);
+
+			//求中文英文字节长度
+function GetBytes(str){
+　　var len = str.length;
+　　var bytes = len;
+　　for(var i=0; i<len; i++){
+　　if (str.charCodeAt(i) > 255) bytes++;
+　　}
+alert( bytes);
+　　}
+
+GetBytes("你好,as");
+
+//不重复的字符数组
+　var arr = [1 ,1 ,2, 3, 3, 2, 1];
+　　Array.prototype.unique = function(){
+　　var ret = [];
+　　var o = {};
+　　var len = this.length;
+　　for (var i=0; i<len; i++){
+　　var v = arr[i];
+　　if (!o[v]){
+　　o[v] = 1;
+　　ret.push(v);
+　　}
+　　}
+　　return ret;
+　　};
+
+var a = new Array();
+a = arr.unique();
+
+//alert(a);
+
+　　var str = "hello world";
+　　var str2 = new String("hello world");
+　　function IsString(str){
+　　return (typeof str == "string" || str.constructor == String);
+　　}
+//　alert(IsString(1));
+　//alert(IsString(str));
+//　alert(IsString(str2));
+
+//JavaScript中如何对一个对象进行深度clone
+　　function cloneObject(o) {
+　　if(!o || 'object' !== typeof o) {
+　　return o;
+　　}
+　　var c = 'function' === typeof o.pop ? [] : {};
+　　var p, v;
+　　for(p in o) {
+　　if(o.hasOwnProperty(p)) {
+　　v = o[p];
+　　if(v && 'object' === typeof v) {
+　　c[p] = Ext.ux.clone(v);
+　　}
+　　else {
+　　c[p] = v;
+　　}
+　　}
+　　}
+　　return c;
+　　};
+
+	//鼠标点击页面中的任意标签，alert该标签的名称.(注意兼容性)
+	function alertElement(evt){
+		var event = evt || window.event;//IE | FF
+
+		var ele = event.srcElement || event.target; //IE | FF
+		alert(ele.tagName) ;
+
+	}
+	window.onload = function(){
+	var body = document.getElementsByTagName('body');
+	body[0].onclick =  alertElement;
+}
+
+//　 parseQueryString，它的用途是把URL参数解析为一个对象　
+
+　　function parseQueryString(url){
+　　var params = {};
+　　var arr = url.split("?");
+　　if (arr.length <= 1)
+　　return params;
+　　arr = arr[1].split("&");
+　　for(var i=0, l=arr.length; i
+　　var a = arr[i].split("=");
+　　params[a[0]] = a[1];//a[0] 既是参数名， a【1】既是值
+　　}
+　　return params;
+　　}
+　　var url = "http://witmax.cn/index.php?key0=0&key1=1&key2=2";
+　　var ps = parseQueryString(url);
+　　alert(ps["key1"]);
+	</script>
+</body>
+</html>
